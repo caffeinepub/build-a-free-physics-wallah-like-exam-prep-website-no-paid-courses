@@ -1,0 +1,216 @@
+{
+  "kind": "build_request",
+  "title": "Build a free Physics Wallah-like exam-prep website (no paid courses)",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a PW-like exam-prep web app experience where all courses are free (no pricing, checkout, subscriptions, or payment flows anywhere in the UI).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Give m complete code for creating Physics Wallah app like website but there is no paid course all are free"
+        ]
+      },
+      "acceptanceCriteria": [
+        "No UI pages/components for payments (pricing tables, checkout, subscriptions) are present.",
+        "All course/lesson access is available without paywalls."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement the core information architecture and navigation for an exam-prep platform: Home, Courses, Course Detail, Subject/Chapter listing, Lesson/Content viewer, and a global search page.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "creating Physics Wallah app like website"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can navigate from Home -> Courses -> Course Detail -> Lesson Viewer without dead ends.",
+        "A global search UI can find courses/chapters/lessons by keyword and show results."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Define and implement a backend data model in the single Motoko actor to represent free content: Course, Subject, Chapter, Lesson, and resource links (e.g., video URL, PDF URL/filename). Provide query methods to list/search and fetch details.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "complete code for creating Physics Wallah app like website"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend exposes methods to: listCourses, getCourse(courseId), listSubjects, listChapters(subjectId), getChapter(chapterId), getLesson(lessonId), and search(query).",
+        "All methods are query calls where appropriate and return stable, typed results usable by the frontend actor client."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Seed the backend with a small but realistic starter catalog for NEET/JEE-style prep (at minimum Physics, Chemistry, Maths, Biology) including at least: 4 courses, 8 chapters, and 16 lessons, with a mix of video links and downloadable resources.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Physics Wallah app like website"
+        ]
+      },
+      "acceptanceCriteria": [
+        "On first deploy, the app shows non-empty course listings without requiring any admin data entry.",
+        "Seed data includes PCMB coverage and multiple lessons per subject."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Build a Lesson/Content Viewer page that can render: embedded video (via URL), structured notes (rich text blocks), and a resources section with downloadable static PDFs (served from frontend public assets).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Physics Wallah app like website"
+        ]
+      },
+      "acceptanceCriteria": [
+        "If a lesson has a video URL, the page shows an embedded player area.",
+        "If a lesson has notes, they render with headings, lists, and emphasis.",
+        "If a lesson has resources, users can download/open them from the UI (static assets, not streamed through the backend)."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Add basic anonymous progress tracking in the frontend (local-only) so users can mark lessons as completed and see completion status at chapter and course level.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "app like website"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can mark/unmark a lesson complete.",
+        "Chapter and course pages display completion counts (e.g., 5/12 lessons completed).",
+        "Progress persists across reloads using browser storage (no login required)."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Use React Query for all backend reads (course lists, detail fetches, search) with loading, empty, and error states implemented consistently across pages.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "complete code"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All server data fetching uses React Query hooks.",
+        "Every page that fetches data displays a clear loading state and a clear empty state."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Create a coherent, modern visual theme suitable for an exam-prep brand (distinctive colors, typography, spacing, and component styling) and apply it consistently across the entire app. Avoid blue & purple as primary colors.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "Physics Wallah app like website"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Theme is consistent across Home, Courses, Detail, Search, and Lesson pages.",
+        "Primary palette is not blue/purple-dominant.",
+        "UI is responsive for mobile and desktop (no horizontal overflow, navigable on small screens)."
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "text": "Add a lightweight, user-facing legal/footer section with English-only text: ‘All courses are free’ notice, a basic disclaimer, and contact placeholder information.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "all are free"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Footer appears site-wide and includes ‘All courses are free’ text.",
+        "All user-facing text is in English."
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Add static example resources (PDFs) to the frontend public assets and wire them into at least 4 seeded lessons as downloadable resources.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "complete code"
+        ]
+      },
+      "acceptanceCriteria": [
+        "At least 4 lessons show downloadable PDF resources.",
+        "PDFs are served as static files from the frontend (not fetched from Motoko)."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor (all logic in backend/main.mo).",
+    "Do not edit files under frontend immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui.",
+    "All user-facing text must be in English.",
+    "No paid course functionality: no payments, subscriptions, checkout, or pricing/paywall gating.",
+    "Do not introduce external databases or third-party auth; Internet Identity is allowed but not required for this request."
+  ],
+  "nonGoals": [
+    "Implementing live classes, real-time chat, or WebSocket-based features.",
+    "Building a creator/admin CMS with role-based publishing workflows.",
+    "Integrating third-party video hosting APIs beyond embedding via URL.",
+    "Generating full NCERT notes/MCQs for every chapter (content generation at that scale is out of scope for this build)."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Wordmark logo in a clean academic style (logo-wordmark.dim_1200x300.png)",
+      "App icon with an academic/exam-prep motif (app-icon.dim_512x512.png)",
+      "Hero banner illustration with students/books/physics-chemistry-math-biology elements in a modern flat style (hero-banner.dim_1600x600.png)",
+      "Four subject icons in a consistent style: Physics, Chemistry, Maths, Biology (icon-physics.dim_256x256.png) (icon-chemistry.dim_256x256.png) (icon-maths.dim_256x256.png) (icon-biology.dim_256x256.png)"
+    ],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [
+      "User-facing text should be English."
+    ],
+    "preferencesToRemove": [],
+    "miscToAdd": [
+      "Wants a Physics Wallah-like exam-prep website where all courses are free (no paid courses)."
+    ],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

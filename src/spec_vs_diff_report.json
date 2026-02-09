@@ -1,0 +1,86 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-09T07:20:41.790Z",
+  "summary": "The diff adds a Motoko backend actor with a seeded course/chapter/lesson/resource structure and a React frontend with TanStack Router navigation, React Query data fetching, localStorage progress tracking, themed styling, header search, site-wide footer, and a lesson viewer that embeds video and offers downloadable resources. Several BuildRequest requirements cannot be fully verified from the truncated backend file and the absence of public asset files in the provided diff summary. There are also clear mismatches with the requested backend API names/shape and missing lesson notes support.",
+  "missing_requirements": [
+    {
+      "id": "REQ-3",
+      "requirement": "Backend exposes methods: listCourses, getCourse(courseId), listSubjects, listChapters(subjectId), getChapter(chapterId), getLesson(lessonId), and search(query), returning stable typed results.",
+      "reason": "The frontend calls different backend method names (getAllCourses, getCourseById, searchCoursesBySubject, searchLessonsByKeyword, initialize). The truncated backend/main.mo snippet does not show the required methods, and the hook names strongly indicate the required API surface was not implemented as specified.",
+      "evidence": [
+        "frontend/src/hooks/useQueries.ts",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "requirement": "Lesson/Content Viewer renders structured notes (rich text blocks) with headings, lists, and emphasis when lesson notes exist.",
+      "reason": "The backend Lesson type shown contains id/title/description/resources only (no notes/rich text blocks field). The LessonViewerPage shown focuses on resources/video and completion, with no evidence of rendering structured notes blocks.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/pages/LessonViewerPage.tsx"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "requirement": "Add static example resources (PDFs) to frontend public assets and wire them into at least 4 seeded lessons as downloadable resources.",
+      "reason": "A mapping to four PDF URLs is added, but the actual PDF files under frontend public assets are not shown in the diff summary (and some files were omitted). From the visible changes alone, it cannot be confirmed that the PDFs were added as static public assets.",
+      "evidence": [
+        "frontend/src/content/staticResources.ts"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Implemented/changed Internet Identity and actor creation hooks under paths marked immutable in the BuildRequest constraints.",
+      "reason": "The BuildRequest explicitly says not to edit files under frontend/src/hooks/useInternetIdentity.ts(x) and frontend/src/hooks/useActor.ts, but the diff includes these files as added/changed content.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts",
+        "frontend/src/hooks/useInternetIdentity.ts"
+      ]
+    },
+    {
+      "description": "Footer includes 'caffeine.ai' attribution link and 'Built with' branding copy not requested.",
+      "reason": "REQ-9 asks for a lightweight legal/footer with an 'All courses are free' notice, basic disclaimer, and contact placeholder. The added footer includes additional third-party attribution/branding beyond that scope.",
+      "evidence": [
+        "frontend/src/components/SiteFooter.tsx"
+      ]
+    },
+    {
+      "description": "User-facing emoji usage in multiple places (e.g., hero badge and footer).",
+      "reason": "The BuildRequest constraint states all user-facing text must be in English; the UI includes emojis adjacent to key user-facing strings, which were not requested and may violate strict interpretations of the constraint.",
+      "evidence": [
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/components/SiteFooter.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.74,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/AppLayout.tsx",
+    "frontend/src/components/HeaderNav.tsx",
+    "frontend/src/components/QueryState.tsx",
+    "frontend/src/components/SiteFooter.tsx",
+    "frontend/src/content/staticResources.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useProgress.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/CourseDetailPage.tsx",
+    "frontend/src/pages/CoursesPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/LessonViewerPage.tsx",
+    "frontend/src/pages/SearchPage.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

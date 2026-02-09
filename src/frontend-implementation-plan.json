@@ -1,0 +1,315 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Free exam-prep (PW-like) frontend: courses, lessons, search, progress, theme, assets",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Ensure the app presents a PW-like free-only learning experience with no pricing/checkout/subscription UI and no paywalls.",
+      "acceptanceCriteria": [
+        "No UI pages/components for payments (pricing tables, checkout, subscriptions) are present.",
+        "All course/lesson access is available without paywalls."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the top-level app shell that only includes free content browsing routes (no pricing/checkout/subscription routes) and provides global layout + navigation. Use shadcn-ui building blocks (e.g., navigation, buttons) for consistent UI; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/PaywallGuard.tsx",
+          "operation": "create",
+          "description": "Add a small utility guard/component that is intentionally NOT used to block content (only used to enforce 'free-only' behavior in UI logic, e.g., ensuring no locked CTA renders). Use shadcn-ui for any messaging styles if needed; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/HeaderNav.tsx",
+          "operation": "create",
+          "description": "Implement a global header with links to Home/Courses/Search only, and ensure there are no menu items for pricing, checkout, subscriptions, or upgrades. Use shadcn-ui components for buttons/inputs/menus where appropriate; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Implement the core information architecture and navigation: Home, Courses, Course Detail, Subject/Chapter listing, Lesson viewer, and a global search page.",
+      "acceptanceCriteria": [
+        "Users can navigate from Home -> Courses -> Course Detail -> Lesson Viewer without dead ends.",
+        "A global search UI can find courses/chapters/lessons by keyword and show results."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/routes.tsx",
+          "operation": "create",
+          "description": "Define and export the app route table for Home, Courses, Course Detail, Lesson Viewer, and Search. Use React Router for navigation wiring and URL params (courseId/chapterId/lessonId)."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire the route table into the app layout, ensuring all required pages are reachable via navigation and deep links. Use shadcn-ui layout primitives (cards, buttons) as needed; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "create",
+          "description": "Create the Home page with hero banner, subject shortcuts, and featured free courses. Use shadcn-ui components (Card, Button, Badge, etc.) for modern layout; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/CoursesPage.tsx",
+          "operation": "create",
+          "description": "Create the Courses listing page with filters (e.g., subject) and course cards. Use shadcn-ui (Card, Input, Select where available) for UI; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/CourseDetailPage.tsx",
+          "operation": "create",
+          "description": "Create a Course Detail page showing course description and nested Subject/Chapter/Lesson listing with navigation into lessons. Use shadcn-ui Accordion/List/Card components as available; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/SearchPage.tsx",
+          "operation": "create",
+          "description": "Create a global Search page that searches across courses/chapters/lessons and renders grouped results with navigation to course/lesson pages. Use shadcn-ui Input and result cards; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/LessonViewerPage.tsx",
+          "operation": "create",
+          "description": "Create the Lesson/Content Viewer page route and base layout (title, content sections, resources, progress controls). Use shadcn-ui components for consistent UI; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Build a Lesson/Content Viewer that supports embedded video by URL, rich structured notes, and downloadable static PDF resources from frontend public assets.",
+      "acceptanceCriteria": [
+        "If a lesson has a video URL, the page shows an embedded player area.",
+        "If a lesson has notes, they render with headings, lists, and emphasis.",
+        "If a lesson has resources, users can download/open them from the UI (static assets, not streamed through the backend)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/LessonViewerPage.tsx",
+          "operation": "modify",
+          "description": "Implement the viewer sections: (1) embedded video when a lesson resource indicates a video URL (or the lesson content contains a video link), (2) notes rendering using a safe, structured format (e.g., markdown-to-HTML rendering with a restricted feature set), and (3) a resources list that links to static PDF files in frontend/public. Use shadcn-ui (Card, Tabs, Separator, Button) for layout; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/ResourceList.tsx",
+          "operation": "create",
+          "description": "Create a reusable resources section that renders lesson resources with clear labels (Video/PDF) and download/open actions for static PDFs. Use shadcn-ui list/card/button styling; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/RichNotes.tsx",
+          "operation": "create",
+          "description": "Create a notes renderer component that can display structured notes (headings, lists, emphasis) in English-only UI, using Tailwind typography classes for consistent styling. Use shadcn-ui where appropriate for containers; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/public/assets/resources/neet-sample-notes-1.pdf",
+          "operation": "create",
+          "description": "Add a static example PDF resource to be downloadable from lessons (served as a public asset)."
+        },
+        {
+          "path": "frontend/public/assets/resources/jee-sample-formulas-1.pdf",
+          "operation": "create",
+          "description": "Add a static example PDF resource to be downloadable from lessons (served as a public asset)."
+        },
+        {
+          "path": "frontend/public/assets/resources/chemistry-revision-1.pdf",
+          "operation": "create",
+          "description": "Add a static example PDF resource to be downloadable from lessons (served as a public asset)."
+        },
+        {
+          "path": "frontend/public/assets/resources/biology-diagrams-1.pdf",
+          "operation": "create",
+          "description": "Add a static example PDF resource to be downloadable from lessons (served as a public asset)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Add anonymous, local-only progress tracking so users can mark lessons complete and see completion status at chapter and course levels.",
+      "acceptanceCriteria": [
+        "Users can mark/unmark a lesson complete.",
+        "Chapter and course pages display completion counts (e.g., 5/12 lessons completed).",
+        "Progress persists across reloads using browser storage (no login required)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useProgress.ts",
+          "operation": "create",
+          "description": "Implement a localStorage-backed progress hook keyed by lessonId that supports mark/unmark completed and provides aggregate counts for a chapter/course."
+        },
+        {
+          "path": "frontend/src/pages/LessonViewerPage.tsx",
+          "operation": "modify",
+          "description": "Add a completion toggle (mark/unmark completed) and show current completion status for the lesson. Use shadcn-ui (Button, Checkbox/Switch if available) for the control; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/CourseDetailPage.tsx",
+          "operation": "modify",
+          "description": "Show per-chapter and course-level completion counts derived from local progress state (e.g., completed/total lessons) and visually indicate completed lessons. Use shadcn-ui badges/progress styling as appropriate; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/CoursesPage.tsx",
+          "operation": "modify",
+          "description": "Show a lightweight completion summary per course (completed lessons vs total) using local progress data. Use shadcn-ui badges/cards; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Use React Query for all backend reads with consistent loading, empty, and error states across pages.",
+      "acceptanceCriteria": [
+        "All server data fetching uses React Query hooks.",
+        "Every page that fetches data displays a clear loading state and a clear empty state."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/api/queries.ts",
+          "operation": "create",
+          "description": "Create React Query hooks that read from the backend actor (via useActor) for: course list, course detail, subject-based course search, and lesson keyword search. Ensure hooks return stable query keys and map data for pages."
+        },
+        {
+          "path": "frontend/src/components/QueryState.tsx",
+          "operation": "create",
+          "description": "Create a small shared component to render consistent loading/empty/error UI for React Query-driven screens. Use shadcn-ui (Skeleton/Alert/Card) if available; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/CoursesPage.tsx",
+          "operation": "modify",
+          "description": "Refactor to use React Query hooks for course listing and subject filtering, and render consistent loading/empty/error via the shared QueryState component. Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/CourseDetailPage.tsx",
+          "operation": "modify",
+          "description": "Refactor to use React Query for course detail fetch and render consistent loading/empty/error states. Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/SearchPage.tsx",
+          "operation": "modify",
+          "description": "Refactor to use React Query for searching courses and lessons and render consistent loading/empty/error states. Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Use React Query to fetch and render featured/latest courses, including consistent loading/empty/error states. Use shadcn-ui components; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Create a coherent modern exam-prep theme with responsive layout and a primary palette that is not blue/purple-dominant.",
+      "acceptanceCriteria": [
+        "Theme is consistent across Home, Courses, Detail, Search, and Lesson pages.",
+        "Primary palette is not blue/purple-dominant.",
+        "UI is responsive for mobile and desktop (no horizontal overflow, navigable on small screens)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Create global styles and CSS variables used by Tailwind/shadcn-ui tokens (background/foreground/primary/etc.), choosing a non-blue/purple primary palette (e.g., green/orange/charcoal) and consistent typography/spacing defaults."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust Tailwind theme extensions (if needed) to support the chosen brand palette and consistent typographic scale, keeping responsiveness in mind and avoiding blue/purple as primary."
+        },
+        {
+          "path": "frontend/src/components/AppLayout.tsx",
+          "operation": "create",
+          "description": "Create a responsive layout wrapper (header, main container, footer) used across routes to ensure consistent spacing and prevent horizontal overflow. Use shadcn-ui layout components where useful; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Adopt AppLayout site-wide so all pages share the same responsive container, typography, and component styling. Use shadcn-ui where appropriate; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Add a site-wide English-only footer with ‘All courses are free’ notice, a basic disclaimer, and contact placeholder info.",
+      "acceptanceCriteria": [
+        "Footer appears site-wide and includes ‘All courses are free’ text.",
+        "All user-facing text is in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/SiteFooter.tsx",
+          "operation": "create",
+          "description": "Create a lightweight English-only footer containing: ‘All courses are free’ notice, basic disclaimer, and contact placeholder information. Use shadcn-ui typography/card styling as appropriate; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/AppLayout.tsx",
+          "operation": "modify",
+          "description": "Wire the SiteFooter into the global layout so it appears on every page. Use shadcn-ui layout primitives where helpful; verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Add static example PDF resources to public assets and wire them into at least 4 lessons as downloadable resources.",
+      "acceptanceCriteria": [
+        "At least 4 lessons show downloadable PDF resources.",
+        "PDFs are served as static files from the frontend (not fetched from Motoko)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/content/staticResources.ts",
+          "operation": "create",
+          "description": "Create a small mapping of known lesson identifiers/titles to static PDF resource URLs under frontend/public/assets/resources, to ensure at least 4 lessons show downloadable PDFs even if backend seed data varies."
+        },
+        {
+          "path": "frontend/src/pages/LessonViewerPage.tsx",
+          "operation": "modify",
+          "description": "Merge backend-provided resources with the staticResources mapping so at least 4 lessons display PDF downloads from frontend/public/assets/resources. Use shadcn-ui buttons/links; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/public/assets/generated/logo-wordmark.dim_1200x300.png",
+          "operation": "create",
+          "description": "Add the generated wordmark asset at frontend/public/assets/generated/logo-wordmark.dim_1200x300.png and make it available for use in the header/home UI."
+        },
+        {
+          "path": "frontend/public/assets/generated/app-icon.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated app icon asset at frontend/public/assets/generated/app-icon.dim_512x512.png and wire it into the site metadata where appropriate (e.g., document icon)."
+        },
+        {
+          "path": "frontend/public/assets/generated/hero-banner.dim_1600x600.png",
+          "operation": "create",
+          "description": "Add the generated hero banner asset at frontend/public/assets/generated/hero-banner.dim_1600x600.png and render it on the Home page hero section."
+        },
+        {
+          "path": "frontend/public/assets/generated/icon-physics.dim_256x256.png",
+          "operation": "create",
+          "description": "Add the generated subject icon asset at frontend/public/assets/generated/icon-physics.dim_256x256.png and render it in subject shortcuts/labels."
+        },
+        {
+          "path": "frontend/public/assets/generated/icon-chemistry.dim_256x256.png",
+          "operation": "create",
+          "description": "Add the generated subject icon asset at frontend/public/assets/generated/icon-chemistry.dim_256x256.png and render it in subject shortcuts/labels."
+        },
+        {
+          "path": "frontend/public/assets/generated/icon-maths.dim_256x256.png",
+          "operation": "create",
+          "description": "Add the generated subject icon asset at frontend/public/assets/generated/icon-maths.dim_256x256.png and render it in subject shortcuts/labels."
+        },
+        {
+          "path": "frontend/public/assets/generated/icon-biology.dim_256x256.png",
+          "operation": "create",
+          "description": "Add the generated subject icon asset at frontend/public/assets/generated/icon-biology.dim_256x256.png and render it in subject shortcuts/labels."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Wire the generated hero banner and subject icons into the Home UI (static public assets) and ensure the section remains responsive on mobile/desktop. Use shadcn-ui cards/buttons for subject tiles; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/HeaderNav.tsx",
+          "operation": "modify",
+          "description": "Wire the generated wordmark logo into the global header navigation as a brand element (static public asset). Use shadcn-ui components; verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Wire the generated app icon frontend/public/assets/generated/app-icon.dim_512x512.png into the document icon metadata so the browser uses it."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-pw-like-exam-prep-web-app-experience-where-all-courses-are-free-no-pricing-checkout-subscriptions-or-payment-flows-anywhere-in-the-ui",
+      "featureTitle": "Create a PW-like exam-prep web app experience where all courses are free (no pricing, checkout, subscriptions, or payment flows anywhere in the UI).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/HeaderNav.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-core-information-architecture-and-navigation-for-an-exam-prep-platform-home-courses-course-detail-subject-chapter-listing-lesson-content-viewer-and-a-global-search-page",
+      "featureTitle": "Implement the core information architecture and navigation for an exam-prep platform: Home, Courses, Course Detail, Subject/Chapter listing, Lesson/Content viewer, and a global search page.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/pages/CourseDetailPage.tsx",
+        "frontend/src/pages/CoursesPage.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/LessonViewerPage.tsx",
+        "frontend/src/pages/SearchPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-build-a-lesson-content-viewer-page-that-can-render-embedded-video-via-url-structured-notes-rich-text-blocks-and-a-resources-section-with-downloadable-static-pdfs-served-from-frontend-public-assets",
+      "featureTitle": "Build a Lesson/Content Viewer page that can render: embedded video (via URL), structured notes (rich text blocks), and a resources section with downloadable static PDFs (served from frontend public assets).",
+      "files": [
+        "frontend/src/pages/LessonViewerPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-5"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-basic-anonymous-progress-tracking-in-the-frontend-local-only-so-users-can-mark-lessons-as-completed-and-see-completion-status-at-chapter-and-course-level",
+      "featureTitle": "Add basic anonymous progress tracking in the frontend (local-only) so users can mark lessons as completed and see completion status at chapter and course level.",
+      "files": [
+        "frontend/src/hooks/useProgress.ts",
+        "frontend/src/pages/CourseDetailPage.tsx",
+        "frontend/src/pages/CoursesPage.tsx",
+        "frontend/src/pages/LessonViewerPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-use-react-query-for-all-backend-reads-course-lists-detail-fetches-search-with-loading-empty-and-error-states-implemented-consistently-across-pages",
+      "featureTitle": "Use React Query for all backend reads (course lists, detail fetches, search) with loading, empty, and error states implemented consistently across pages.",
+      "files": [
+        "frontend/src/components/QueryState.tsx",
+        "frontend/src/pages/CourseDetailPage.tsx",
+        "frontend/src/pages/CoursesPage.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/SearchPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-a-coherent-modern-visual-theme-suitable-for-an-exam-prep-brand-distinctive-colors-typography-spacing-and-component-styling-and-apply-it-consistently-across-the-entire-app-avoid-blue-purple-as-primary-colors",
+      "featureTitle": "Create a coherent, modern visual theme suitable for an exam-prep brand (distinctive colors, typography, spacing, and component styling) and apply it consistently across the entire app. Avoid blue & purple as primary colors.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/AppLayout.tsx",
+        "frontend/src/index.css",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-lightweight-user-facing-legal-footer-section-with-english-only-text-all-courses-are-free-notice-a-basic-disclaimer-and-contact-placeholder-information",
+      "featureTitle": "Add a lightweight, user-facing legal/footer section with English-only text: ‘All courses are free’ notice, a basic disclaimer, and contact placeholder information.",
+      "files": [
+        "frontend/src/components/AppLayout.tsx",
+        "frontend/src/components/SiteFooter.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-9"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-static-example-resources-pdfs-to-the-frontend-public-assets-and-wire-them-into-at-least-4-seeded-lessons-as-downloadable-resources",
+      "featureTitle": "Add static example resources (PDFs) to the frontend public assets and wire them into at least 4 seeded lessons as downloadable resources.",
+      "files": [
+        "frontend/index.html",
+        "frontend/src/components/HeaderNav.tsx",
+        "frontend/src/content/staticResources.ts",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/LessonViewerPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-10"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

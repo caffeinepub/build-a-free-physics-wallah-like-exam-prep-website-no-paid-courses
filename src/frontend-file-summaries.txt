@@ -1,0 +1,18 @@
+{
+  "frontend/src/index.css": "Global styles with OKLCH color system using green/orange academic theme (avoiding blue/purple), custom font imports, and utility classes for the exam prep platform.",
+  "frontend/tailwind.config.js": "Tailwind configuration with custom fonts (Inter, Poppins), extended color tokens, border radius, shadows, and animations for the exam prep design system.",
+  "frontend/index.html": "HTML entry point with app icon, Google Fonts preconnect, and SEO meta tags for the free NEET & JEE exam prep platform.",
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, ThemeProvider wrapper, and route definitions for all pages (home, courses, course detail, lesson viewer, search).",
+  "frontend/src/components/AppLayout.tsx": "Root layout component that wraps all pages with HeaderNav, main content area via Outlet, and SiteFooter.",
+  "frontend/src/components/HeaderNav.tsx": "Responsive header navigation with logo, menu links (Home, All Courses), search bar, and mobile menu toggle.",
+  "frontend/src/components/SiteFooter.tsx": "Site-wide footer with platform description, \"All courses are free\" notice, quick links, contact info, and caffeine.ai attribution with disclaimer.",
+  "frontend/src/components/QueryState.tsx": "Reusable component for displaying loading spinners, error messages, and empty states for React Query-driven data fetching.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for backend operations including getAllCourses, getCourseById, searchCoursesBySubject, searchLessonsByKeyword, and backend initialization.",
+  "frontend/src/hooks/useProgress.ts": "Custom hook for localStorage-backed lesson progress tracking with mark/unmark complete, completion checks, and aggregate counts.",
+  "frontend/src/pages/HomePage.tsx": "Landing page with hero banner, subject shortcuts with icons, featured courses grid, and features section highlighting video lectures and study materials.",
+  "frontend/src/pages/CoursesPage.tsx": "Course listing page with subject filter buttons, course cards showing progress, chapter/lesson counts, and completion percentages.",
+  "frontend/src/pages/CourseDetailPage.tsx": "Course detail page displaying course info, overall progress, and expandable chapter/lesson list with completion indicators and navigation links.",
+  "frontend/src/pages/LessonViewerPage.tsx": "Lesson viewer page with breadcrumb navigation, completion toggle, video embed section, downloadable resources list, and prev/next lesson navigation with proper TypeScript type annotations for Lesson and Chapter.",
+  "frontend/src/pages/SearchPage.tsx": "Search page with input field that searches across courses and lessons, displaying grouped results with links to course/lesson detail pages.",
+  "frontend/src/content/staticResources.ts": "Static mapping of lesson IDs to downloadable PDF resources served from frontend public assets directory."
+}
